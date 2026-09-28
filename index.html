@@ -262,13 +262,13 @@ details.box p { color: var(--muted); margin: 6px 0 10px; font-size: .92rem; }
   </header>
 
   <section class="panel" aria-labelledby="avH">
-    <h2 class="ph" id="avH">Su avance</h2>
+    <h2 class="ph" id="avH">Su avance para que el preciosote pueda ver Doomsday &lt;3</h2>
     <div class="strip" id="strip" role="img" aria-label="Progreso por título"></div>
     <div class="prog-row"><span id="stDone"></span><span id="stLeft"></span></div>
-    <p class="pace" id="paceText"></p>
+    <p class="pace" id="paceText" hidden></p>
   </section>
 
-  <p class="modenote" id="modeNote" role="status">Conectando con el progreso compartido…</p>
+  <p class="modenote" id="modeNote" role="status" hidden>Conectando con el progreso compartido…</p>
   <div class="notice" id="storageNotice" hidden>Este navegador no permite guardar datos, así que el avance se perderá al cerrar la página.</div>
 
   <section class="now" id="nowCard" aria-live="polite"></section>
@@ -930,8 +930,9 @@ window.DOOMSDAY_CONFIG = {
   function setNote() {
     var n = $('modeNote');
     n.className = 'modenote';
+    n.hidden = false;
     if (mode === 'shared') {
-      if (connOK) { n.classList.add('ok'); n.textContent = 'Progreso compartido: lo que marque cualquiera de los dos se guarda para ambos.'; }
+      if (connOK) { n.hidden = true; n.textContent = ''; }
       else { n.classList.add('warn'); n.textContent = 'Sin conexión con el servidor. Reintentando…'; }
     } else if (mode === 'local') {
       var msg = 'Modo local: este navegador guarda su propio avance y no se comparte con nadie.';
